@@ -1,3 +1,5 @@
+<% include partials/header %>
+
 <h1>This is the properties page</h1>
 
 <% properties.forEach(function(property) {  %>
@@ -6,3 +8,5 @@
         <img src="<%= property.image %>">
     </div>
 <% }); %>
+
+<% include partials/footer %>
