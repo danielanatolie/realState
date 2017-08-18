@@ -1,0 +1,8 @@
+<h1>This is the properties page</h1>
+
+<% properties.forEach(function(property) {  %>
+    <div>
+        <h4><%= property.name %></h4>
+        <img src="<%= property.image %>">
+    </div>
+<% }); %>
