@@ -1,26 +1,26 @@
 <% include partials/header %>
-<div class="container">
-   <header class="jumbotron">
-        <div class="container">
-            <h1>Welcome to realState.</h1>
-            <p>View our hand-picked investment properties.</p>
-            <p>
-                <a class="btn btn-primary btn-lg" href="/properties/new">Add new property</a>  
-            </p>
-        </div>
-    </header>
-
-    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-        <% properties.forEach(function(property) {  %>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                    <img src="<%= property.image %>">
-                    <div class="caption">
-                        <h4><%= property.name %></h4>
+    <div class="container">
+       <header class="jumbotron">
+            <div class="container">
+                <h1>Welcome to realState.</h1>
+                <p>View our hand-picked investment properties.</p>
+                <p>
+                    <a class="btn btn-primary btn-lg" href="/properties/new">Add new property</a>  
+                </p>
+            </div>
+        </header>
+    
+        <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+            <% properties.forEach(function(property) {  %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="thumbnail">
+                        <img src="<%= property.image %>">
+                        <div class="caption">
+                            <h4><%= property.name %></h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <% }); %> 
+            <% }); %> 
+        </div>
     </div>
-</div>
 <% include partials/footer %>
