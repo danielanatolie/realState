@@ -1,31 +1,58 @@
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
+var express    = require("express"),
+    app        = express(),
+    bodyParser = require("body-parser"),
+    mongoose   = require("mongoose");
 
-    var properties = [
-            {name: "Surrey Night Castle", image: "https://upload.wikimedia.org/wikipedia/commons/7/7b/BlaiseCastleEstate%28Castle%29.JPG"},
-            {name: "North Beach Hall", image: "http://www.publicdomainpictures.net/pictures/140000/velka/house-on-the-beach.jpg"},
-            {name: "York House", image: "https://static.pexels.com/photos/106399/pexels-photo-106399.jpeg"}
-        ] 
-
+mongoose.connect("mongodb://localhost/realState");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+
+// SCHEMA
+var propertySchema = new mongoose.Schema({
+    name: String,
+    image: String
+});
+
+var Property = mongoose.model("Property", propertySchema);
+// Property.create(
+//         {
+//             name: "York House", 
+//             image: "https://static.pexels.com/photos/106399/pexels-photo-106399.jpeg"
+            
+//         }, function(err, property) {
+//             if(err) {
+//                 console.log(err);
+//             } else {
+//                 console.log("Newly created property.");
+//                 console.log(property);
+//             }
+//         });
 
 app.get("/", function(req, res) {
     res.render("landing");
 });
 
 app.get("/properties", function(req, res) {
-
-    res.render("properties", {properties: properties});
+    Property.find({}, function(err, allProperties) {
+       if(err) {
+           console.log(err);
+       } else {
+            res.render("properties", {properties: allProperties});
+       }
+    });
 });
 
 app.post("/properties", function(req, res) {
     var name = req.body.name;
     var image = req.body.image; 
     var newProperty = {name: name, image: image};
-    properties.push(newProperty);
-    res.redirect("/properties");
+    Property.create(newProperty, function(err, newlyCreated) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.redirect("/properties");
+        }
+    });
 });
 
 app.get("/properties/new", function(req, res) {
