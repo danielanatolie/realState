@@ -5,24 +5,10 @@ var express    = require("express"),
     Property   = require("./models/property"),
     seedDB     = require("./seeds");
 
-seedDB();
 mongoose.connect("mongodb://localhost/realState");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
-
-// Property.create(
-//         {
-//             name: "York House", 
-//             image: "https://static.pexels.com/photos/106399/pexels-photo-106399.jpeg",
-//             description: "This is a huge York House property, amazing stuff brah."
-//         }, function(err, property) {
-//             if(err) {
-//                 console.log(err);
-//             } else {
-//                 console.log("Newly created property.");
-//                 console.log(property);
-//             }
-//         });
+seedDB();
 
 app.get("/", function(req, res) {
     res.render("landing");
@@ -57,7 +43,7 @@ app.get("/properties/new", function(req, res) {
 });
 
 app.get("/properties/:id", function(req, res) {
-    Property.findById(req.params.id, function(err, foundProperty) {
+    Property.findById(req.params.id).populate("comments").exec(function(err, foundProperty) {
         if(err) {
             console.log(err);
         } else {
