@@ -3,11 +3,13 @@ var express    = require("express"),
     bodyParser = require("body-parser"),
     mongoose   = require("mongoose"),
     Property   = require("./models/property"),
+    Comment    = require("./models/comment"),
     seedDB     = require("./seeds");
 
 mongoose.connect("mongodb://localhost/realState");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
 seedDB();
 
 app.get("/", function(req, res) {
@@ -58,6 +60,25 @@ app.get("/properties/:id/comments/new", function(req, res) {
            console.log(err);
        } else {
            res.render("comments/new", {property: property}); 
+       }
+    });
+});
+
+app.post("/properties/:id/comments", function(req, res) {
+    Property.findById(req.params.id, function(err, property) {
+       if(err) {
+           console.log(err);
+           res.redirect("/properties");
+       } else {
+           Comment.create(req.body.comment, function(err, comment) {
+               if(err) {
+                   console.log(err);
+               } else {
+                   property.comments.push(comment);
+                   property.save();
+                   res.redirect('/properties/' + property._id);
+               }
+           });
        }
     });
 });

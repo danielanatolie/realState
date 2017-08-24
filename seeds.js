@@ -6,17 +6,17 @@ var data = [
     {
         name: "York House", 
         image: "https://static.pexels.com/photos/106399/pexels-photo-106399.jpeg",
-        desciption: "Keen undertaking."
+        desciption: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam varius massa eget porta lobortis. Ut lobortis aliquam tellus laoreet molestie. Maecenas porttitor elit tortor, ut commodo turpis posuere ut. Phasellus porttitor sem nec augue malesuada, et maximus felis facilisis. Duis posuere velit at sapien porta, nec porta enim tempor. Aenean efficitur, libero id dictum consequat, tellus elit lacinia diam, sed semper ligula lectus in nisi. Sed luctus tortor mi, vitae aliquam augue hendrerit sed. Etiam pharetra gravida erat at volutpat. Phasellus pretium mi ac orci lacinia mattis. Sed sem felis, venenatis eget finibus a, condimentum blandit libero. Aenean interdum tristique lacus."
     },
     {
         name: "Dansworth", 
         image: "http://www.jumptools.com/wp-content/uploads/2013/08/fotolia_3825014_x.jpg",
-        desciption: "Craftswork arrival."
+        desciption: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam varius massa eget porta lobortis. Ut lobortis aliquam tellus laoreet molestie. Maecenas porttitor elit tortor, ut commodo turpis posuere ut. Phasellus porttitor sem nec augue malesuada, et maximus felis facilisis. Duis posuere velit at sapien porta, nec porta enim tempor. Aenean efficitur, libero id dictum consequat, tellus elit lacinia diam, sed semper ligula lectus in nisi. Sed luctus tortor mi, vitae aliquam augue hendrerit sed. Etiam pharetra gravida erat at volutpat. Phasellus pretium mi ac orci lacinia mattis. Sed sem felis, venenatis eget finibus a, condimentum blandit libero. Aenean interdum tristique lacus."
     },
         {
         name: "Crosmith Apartment", 
         image: "https://si.wsj.net/public/resources/images/BN-NN734_0414pp_12S_20160413160150.jpg",
-        desciption: "Geniune appeal."
+        desciption: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam varius massa eget porta lobortis. Ut lobortis aliquam tellus laoreet molestie. Maecenas porttitor elit tortor, ut commodo turpis posuere ut. Phasellus porttitor sem nec augue malesuada, et maximus felis facilisis. Duis posuere velit at sapien porta, nec porta enim tempor. Aenean efficitur, libero id dictum consequat, tellus elit lacinia diam, sed semper ligula lectus in nisi. Sed luctus tortor mi, vitae aliquam augue hendrerit sed. Etiam pharetra gravida erat at volutpat. Phasellus pretium mi ac orci lacinia mattis. Sed sem felis, venenatis eget finibus a, condimentum blandit libero. Aenean interdum tristique lacus."
     }
 ]
 
