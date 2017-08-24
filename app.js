@@ -19,7 +19,7 @@ app.get("/properties", function(req, res) {
        if(err) {
            console.log(err);
        } else {
-            res.render("index", {properties: allProperties});
+            res.render("properties/index", {properties: allProperties});
        }
     });
 });
@@ -39,7 +39,7 @@ app.post("/properties", function(req, res) {
 });
 
 app.get("/properties/new", function(req, res) {
-   res.render("new.ejs"); 
+   res.render("properties/new"); 
 });
 
 app.get("/properties/:id", function(req, res) {
@@ -47,8 +47,18 @@ app.get("/properties/:id", function(req, res) {
         if(err) {
             console.log(err);
         } else {
-            res.render("show", {property: foundProperty});   
+            res.render("properties/show", {property: foundProperty});   
         }
+    });
+});
+
+app.get("/properties/:id/comments/new", function(req, res) {
+    Property.findById(req.params.id, function(err, property) {
+       if(err) {
+           console.log(err);
+       } else {
+           res.render("comments/new", {property: property}); 
+       }
     });
 });
 
