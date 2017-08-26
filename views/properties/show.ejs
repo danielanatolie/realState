@@ -19,6 +19,7 @@
                     <p>
                         <em>Submitted By </em><%= property.author.username %>
                     </p>
+                    <a class="btn btn-warning" href="/properties/<%= property._id %>/edit">Edit</a>
                 </div>
             </div>
             <div class="well">
@@ -36,7 +37,6 @@
                             </p>
                         </div>
                     </div>
-
                 <% }) %>
             </div>
         </div>

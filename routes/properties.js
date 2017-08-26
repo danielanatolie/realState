@@ -48,6 +48,28 @@ router.get("/:id", isLoggedIn, function(req, res) {
     });
 });
 
+// edit - change property information
+router.get("/:id/edit", function(req, res) {
+    Property.findById(req.params.id, function(err, foundProperty) {
+       if(err) {
+           res.redirect("/properties");
+       } else {
+           res.render("properties/edit", {property: foundProperty});
+       }
+    });
+});
+
+// update - submit changed property to db
+router.put("/:id", function(req, res) {
+    Property.findByIdAndUpdate(req.params.id, req.body.property, function(err, updatedProperty) {
+       if(err) {
+           res.redirect("/properties");
+       } else {
+           res.redirect("/properties/" + req.params.id);
+       }
+    });
+});
+
 // middleware
 function isLoggedIn(req, res, next) {
     if(req.isAuthenticated()) {

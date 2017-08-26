@@ -7,7 +7,8 @@ var express         = require("express"),
     seedDB          = require("./seeds"),
     passport        = require("passport"),
     localStrategy   = require("passport-local"),
-    User            = require("./models/user");
+    User            = require("./models/user"),
+    methodOverride  = require("method-override");
 
 var propertyRoutes  = require("./routes/properties"),
     commentRoutes   = require("./routes/comments"),
@@ -17,6 +18,7 @@ mongoose.connect("mongodb://localhost/realState");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 //seedDB();
 
 app.use(require("express-session")({
