@@ -30,7 +30,7 @@ router.post("/", function(req, res) {
 
 // new - show form to create new property
 router.get("/new", function(req, res) {
-   res.render("/new"); 
+   res.render("properties/new"); 
 });
 
 // show - display more info about one property
