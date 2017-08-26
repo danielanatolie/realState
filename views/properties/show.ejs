@@ -19,10 +19,12 @@
                     <p>
                         <em>Submitted By </em><%= property.author.username %>
                     </p>
-                    <a class="btn btn-warning" href="/properties/<%= property._id %>/edit">Edit</a>
-                    <form id="delete-button" action="/properties/<%= property._id %>?_method=DELETE" method="POST">
-                        <button class="btn btn-danger">Delete</button>
-                    </form>
+                    <% if(currentUser && property.author.id.equals(currentUser._id)) { %>
+                        <a class="btn btn-warning" href="/properties/<%= property._id %>/edit">Edit</a>
+                        <form id="delete-button" action="/properties/<%= property._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    <% } %>
                 </div>
             </div>
             <div class="well">
@@ -38,6 +40,10 @@
                             <p>
                                 <%= comment.text %>
                             </p>
+                            <a class="btn btn-xs btn-warning" 
+                               href="/properties/<%=property._id%>/comments/<%=comment._id%>/edit">
+                               Edit
+                            </a>
                         </div>
                     </div>
                 <% }) %>

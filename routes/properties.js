@@ -49,18 +49,14 @@ router.get("/:id", isLoggedIn, function(req, res) {
 });
 
 // edit - change property information
-router.get("/:id/edit", function(req, res) {
+router.get("/:id/edit", checkPropertyOwnership, function(req, res) {
     Property.findById(req.params.id, function(err, foundProperty) {
-       if(err) {
-           res.redirect("/properties");
-       } else {
-           res.render("properties/edit", {property: foundProperty});
-       }
+            res.render("properties/edit", {property: foundProperty});
     });
 });
 
 // update - submit changed property to db
-router.put("/:id", function(req, res) {
+router.put("/:id", checkPropertyOwnership, function(req, res) {
     Property.findByIdAndUpdate(req.params.id, req.body.property, function(err, updatedProperty) {
        if(err) {
            res.redirect("/properties");
@@ -71,7 +67,7 @@ router.put("/:id", function(req, res) {
 });
 
 // destroy - remove property from db
-router.delete("/:id", function(req, res) {
+router.delete("/:id", checkPropertyOwnership, function(req, res) {
    Property.findByIdAndRemove(req.params.id, function(err) {
       if(err) {
           res.redirect("/properties");
@@ -87,6 +83,24 @@ function isLoggedIn(req, res, next) {
         return next();
     } 
     res.redirect("/login");
+}
+
+function checkPropertyOwnership(req, res, next) {
+    if(req.isAuthenticated()) {
+       Property.findById(req.params.id, function(err, foundProperty) {
+           if(err) {
+               res.redirect("back");
+           } else {
+               if(foundProperty.author.id.equals(req.user._id)) {
+                    next();
+               } else {
+                   res.redirect("back");
+               }
+           }
+        });
+    } else {
+        res.redirect("back");
+    }
 }
 
 module.exports = router;
