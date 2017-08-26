@@ -70,6 +70,17 @@ router.put("/:id", function(req, res) {
     });
 });
 
+// destroy - remove property from db
+router.delete("/:id", function(req, res) {
+   Property.findByIdAndRemove(req.params.id, function(err) {
+      if(err) {
+          res.redirect("/properties");
+      } else {
+          res.redirect("/properties");
+      }
+   });
+});
+
 // middleware
 function isLoggedIn(req, res, next) {
     if(req.isAuthenticated()) {
