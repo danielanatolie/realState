@@ -18,7 +18,11 @@ router.post("/", function(req, res) {
     var name = req.body.name;
     var image = req.body.image; 
     var desc = req.body.description;
-    var newProperty = {name: name, image: image, description: desc};
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    }
+    var newProperty = {name: name, image: image, description: desc, author: author};
     Property.create(newProperty, function(err, newlyCreated) {
         if(err) {
             console.log(err);
@@ -29,12 +33,12 @@ router.post("/", function(req, res) {
 });
 
 // new - show form to create new property
-router.get("/new", function(req, res) {
+router.get("/new", isLoggedIn, function(req, res) {
    res.render("properties/new"); 
 });
 
 // show - display more info about one property
-router.get("/:id", function(req, res) {
+router.get("/:id", isLoggedIn, function(req, res) {
     Property.findById(req.params.id).populate("comments").exec(function(err, foundProperty) {
         if(err) {
             console.log(err);
@@ -43,5 +47,13 @@ router.get("/:id", function(req, res) {
         }
     });
 });
+
+// middleware
+function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated()) {
+        return next();
+    } 
+    res.redirect("/login");
+}
 
 module.exports = router;

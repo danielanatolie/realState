@@ -16,12 +16,15 @@
                     <h4 class="pull-right">$2.3 million</h4>
                     <h4><a><%= property.name %></a></h4>
                     <p><%= property.description %></p>
+                    <p>
+                        <em>Submitted By </em><%= property.author.username %>
+                    </p>
                 </div>
             </div>
             <div class="well">
                 <div class="text-right">
                     <a class="btn btn-success" href="/properties/<%= property._id %>/comments/new">Add a New Comment</a>
-                </div
+                </div>
                 <hr>
                 <% property.comments.forEach(function(comment) { %>
                     <div class="row">
