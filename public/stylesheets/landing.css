@@ -1,82 +1,131 @@
-body {
-  background-color: #000;
+    body {
+    background: url(https://images.unsplash.com/photo-1445308394109-4ec2920981b1?dpr=2&fit=crop&fm=jpg&h=825&ixlib=rb-0.3.5&q=50&w=1450);
+    background-size: cover;
+    background-position: center; 
+    transition: background 1.5s linear;
+    -webkit-backface-visibility: hidden;
+    webkit-transition: background-image 1.5s linear;
+    -webkit-transform:translate3d(0,0,0);
 }
 
-#landing-header {
-  z-index: 1;
-  position: relative;
-  text-align: center;
-  padding-top: 40vh;
+.bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
-#landing-header h1 {
-  color: #fff;
+body,
+html {
+    width: 100%;
+    height: 100%;
+    /*font-family: "Lato";*/
+    color: white;
 }
 
-.slideshow { 
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+h1 {
+	font-weight: 700;
+	font-size: 5em;
 }
 
-.slideshow li { 
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-size: cover;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  opacity: 0;
-  z-index: 0;
-  animation: imageAnimation 50s linear infinite; 
+
+.content{
+	padding-top: 20%;
+	text-align: center;
 }
 
-.slideshow li:nth-child(1) { 
-  background-image: url(https://www.walldevil.com/real-estate-wallpaper-445208/) 
-}
-.slideshow li:nth-child(2) { 
-  background-image: url(https://images.alphacoders.com/435/435117.jpg);
-  animation-delay: 10s; 
-}
-.slideshow li:nth-child(3) { 
-  background-image: url(https://adc3ef35f321fe6e725a-fb8aac3b3bf42afe824f73b606f0aa4c.ssl.cf1.rackcdn.com/propertyimages/849/quaker-bridge-mall-03.jpg);
-  animation-delay: 20s; 
-}
-.slideshow li:nth-child(4) { 
-  background-image: url(http://unisci24.com/data_images/wlls/9/199518-building.jpg);
-  animation-delay: 30s; 
-}
-.slideshow li:nth-child(5) { 
-  background-image: url(http://cdn.pcwallart.com/images/island-beach-house-wallpaper-4.jpg);
-  animation-delay: 40s; 
+.content h1, .content h3{
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+                 0px 8px 13px rgba(0,0,0,0.1),
+                 0px 18px 23px rgba(0,0,0,0.1);
 }
 
-@keyframes imageAnimation { 
-  0% { 
-    opacity: 0; 
-    animation-timing-function: ease-in;
-  }
-  10% {
-    opacity: 1;
-    animation-timing-function: ease-out;
-  }
-  20% {
-    opacity: 1
-  }
-  30% {
-    opacity: 0
-  }
+hr {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
 }
+
+/*body {*/
+/*  background-color: #000;*/
+/*}*/
+
+/*#landing-header {*/
+/*  z-index: 1;*/
+/*  position: relative;*/
+/*  text-align: center;*/
+/*  padding-top: 40vh;*/
+/*}*/
+
+/*#landing-header h1 {*/
+/*  color: #fff;*/
+/*}*/
+
+/*.slideshow { */
+/*  position: fixed;*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  z-index: 0;*/
+/*  list-style: none;*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*}*/
+
+/*.slideshow li { */
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  background-size: cover;*/
+/*  background-position: 50% 50%;*/
+/*  background-repeat: no-repeat;*/
+/*  opacity: 0;*/
+/*  z-index: 0;*/
+/*  animation: imageAnimation 50s linear infinite; */
+/*}*/
+
+/*.slideshow li:nth-child(1) { */
+/*  background-image: url(https://www.walldevil.com/real-estate-wallpaper-445208/) */
+/*}*/
+/*.slideshow li:nth-child(2) { */
+/*  background-image: url(https://images.alphacoders.com/435/435117.jpg);*/
+/*  animation-delay: 10s; */
+/*}*/
+/*.slideshow li:nth-child(3) { */
+/*  background-image: url(https://adc3ef35f321fe6e725a-fb8aac3b3bf42afe824f73b606f0aa4c.ssl.cf1.rackcdn.com/propertyimages/849/quaker-bridge-mall-03.jpg);*/
+/*  animation-delay: 20s; */
+/*}*/
+/*.slideshow li:nth-child(4) { */
+/*  background-image: url(http://unisci24.com/data_images/wlls/9/199518-building.jpg);*/
+/*  animation-delay: 30s; */
+/*}*/
+/*.slideshow li:nth-child(5) { */
+/*  background-image: url(http://cdn.pcwallart.com/images/island-beach-house-wallpaper-4.jpg);*/
+/*  animation-delay: 40s; */
+/*}*/
+
+/*@keyframes imageAnimation { */
+/*  0% { */
+/*    opacity: 0; */
+/*    animation-timing-function: ease-in;*/
+/*  }*/
+/*  10% {*/
+/*    opacity: 1;*/
+/*    animation-timing-function: ease-out;*/
+/*  }*/
+/*  20% {*/
+/*    opacity: 1*/
+/*  }*/
+/*  30% {*/
+/*    opacity: 0*/
+/*  }*/
+/*}*/
 
 /* Older browser support - .no-cssanimations class added by modernizr */
-.no-cssanimations .slideshow li {
-	opacity: 1;
-}
+/*.no-cssanimations .slideshow li {*/
+/*	opacity: 1;*/
+/*}*/
