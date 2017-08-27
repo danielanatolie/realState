@@ -19,7 +19,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res) {
 router.post("/", middleware.isLoggedIn, function(req, res) {
     Property.findById(req.params.id, function(err, property) {
        if(err) {
-           console.log(err);
+           req.flash("error", "Something went wrong. [#103]");
            res.redirect("/properties");
        } else {
            Comment.create(req.body.comment, function(err, comment) {
@@ -31,6 +31,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
                    comment.save();
                    property.comments.push(comment);
                    property.save();
+                   req.flash("success", "Added comment.");
                    res.redirect('/properties/' + property._id);
                }
            });
@@ -66,6 +67,7 @@ router.delete("/:comment_id", middleware.checkCommentOwnership, function(req, re
        if(err) {
            res.redirect("back");
        } else {
+           req.flash("success", "Comment removed.");
            res.redirect("/properties/"+req.params.id);
        }
     });
