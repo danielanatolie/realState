@@ -7,6 +7,9 @@
                     <div class="form-group">
                         <input class="form-control" type="text" name="property[name]" value="<%= property.name %>">
                     </div>
+                    <div class="form-group">
+                        <input class="form-control" type="number" name="property[price]" value="<%= property.price %>" min="0.01" step="10000">
+                    </div>
                      <div class="form-group">
                         <input class="form-control" type="text" name="property[image]" value="<%= property.image %>">
                     </div>
