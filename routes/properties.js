@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Property = require("../models/property");
+var middleware = require("../middleware");
 
 // index - show all properties
 router.get("/", function(req, res) {
@@ -14,7 +15,7 @@ router.get("/", function(req, res) {
 });
 
 // create - add new property to db
-router.post("/", function(req, res) {
+router.post("/", middleware.isLoggedIn, function(req, res) {
     var name = req.body.name;
     var image = req.body.image; 
     var desc = req.body.description;
@@ -33,12 +34,12 @@ router.post("/", function(req, res) {
 });
 
 // new - show form to create new property
-router.get("/new", isLoggedIn, function(req, res) {
+router.get("/new", middleware.isLoggedIn, function(req, res) {
    res.render("properties/new"); 
 });
 
 // show - display more info about one property
-router.get("/:id", isLoggedIn, function(req, res) {
+router.get("/:id", middleware.isLoggedIn, function(req, res) {
     Property.findById(req.params.id).populate("comments").exec(function(err, foundProperty) {
         if(err) {
             console.log(err);
@@ -49,14 +50,14 @@ router.get("/:id", isLoggedIn, function(req, res) {
 });
 
 // edit - change property information
-router.get("/:id/edit", checkPropertyOwnership, function(req, res) {
+router.get("/:id/edit", middleware.checkPropertyOwnership, function(req, res) {
     Property.findById(req.params.id, function(err, foundProperty) {
             res.render("properties/edit", {property: foundProperty});
     });
 });
 
 // update - submit changed property to db
-router.put("/:id", checkPropertyOwnership, function(req, res) {
+router.put("/:id", middleware.checkPropertyOwnership, function(req, res) {
     Property.findByIdAndUpdate(req.params.id, req.body.property, function(err, updatedProperty) {
        if(err) {
            res.redirect("/properties");
@@ -67,7 +68,7 @@ router.put("/:id", checkPropertyOwnership, function(req, res) {
 });
 
 // destroy - remove property from db
-router.delete("/:id", checkPropertyOwnership, function(req, res) {
+router.delete("/:id", middleware.checkPropertyOwnership, function(req, res) {
    Property.findByIdAndRemove(req.params.id, function(err) {
       if(err) {
           res.redirect("/properties");
@@ -76,31 +77,5 @@ router.delete("/:id", checkPropertyOwnership, function(req, res) {
       }
    });
 });
-
-// middleware
-function isLoggedIn(req, res, next) {
-    if(req.isAuthenticated()) {
-        return next();
-    } 
-    res.redirect("/login");
-}
-
-function checkPropertyOwnership(req, res, next) {
-    if(req.isAuthenticated()) {
-       Property.findById(req.params.id, function(err, foundProperty) {
-           if(err) {
-               res.redirect("back");
-           } else {
-               if(foundProperty.author.id.equals(req.user._id)) {
-                    next();
-               } else {
-                   res.redirect("back");
-               }
-           }
-        });
-    } else {
-        res.redirect("back");
-    }
-}
 
 module.exports = router;

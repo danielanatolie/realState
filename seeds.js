@@ -26,28 +26,28 @@ function seedDB() {
                 console.log(err);
             }
             console.log("Removed all properties."); 
-            data.forEach(function(seed) {
-                Property.create(seed, function(err, property) {
-                    if(err) {
-                        console.log(err);
-                    } else {
-                        console.log("Added a property.");
-                        Comment.create(
-                            {
-                                text: "A stable and flourishing investment.",
-                                author: "Peterson"
-                            }, function(err, comment) {
-                                if(err) {
-                                    console.log(err);
-                                } else {
-                                    property.comments.push(comment);
-                                    property.save();
-                                    console.log("Created new comment.");
-                                }
-                            });
-                    }
-                });
-            });
+            // data.forEach(function(seed) {
+            //     Property.create(seed, function(err, property) {
+            //         if(err) {
+            //             console.log(err);
+            //         } else {
+            //             console.log("Added a property.");
+            //             Comment.create(
+            //                 {
+            //                     text: "A stable and flourishing investment.",
+            //                     author: "Peterson"
+            //                 }, function(err, comment) {
+            //                     if(err) {
+            //                         console.log(err);
+            //                     } else {
+            //                         property.comments.push(comment);
+            //                         property.save();
+            //                         console.log("Created new comment.");
+            //                     }
+            //                 });
+            //         }
+            //     });
+            // });
         });
 }
 
